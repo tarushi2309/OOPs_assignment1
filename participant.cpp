@@ -5,9 +5,9 @@
 using namespace std;
 class Student
 {
+    public:
     string name;
     string ID;
-    public:
     Student(string in_name,string in_ID)
     {
         name=in_name;
