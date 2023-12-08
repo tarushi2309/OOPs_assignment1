@@ -1,6 +1,57 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Student
+{
+    protected:                // changed access specifier to protected instead of public so that variables are not inadvertently changed 
+    string name;
+    string ID;
+
+    public:
+
+    Student(string name, string ID)
+    {
+        this->name=name;
+        this->ID=ID;
+    }
+
+    string getName()                // getter function for name
+    {
+        return this->name;
+    }
+
+    string getID()                 // getter function for ID
+    {
+        return this->ID;
+    }
+};
+
+class Participant : public Student
+{
+    protected:
+    vector<Event> events;
+
+    public:
+
+    Participant(string name, string ID):            // first constructor of student is called
+        Student(name,ID)
+    {
+        
+
+    }
+
+    void addEvent(Event new_event)                    // setter function to add events
+    {
+        this->events.push_back(new_event);
+    }
+
+    vector<Event> getEvents()                    // getter function to get list of events a student is participating in
+    {
+        return this->events;
+    }
+
+};
+
 enum specialization
 {
     logistics, treasury, website_lead,publicity
@@ -13,7 +64,7 @@ class Core : public Student{
     vector<Coordinator> coord_force;
 
     public:
-    Core(string name, string rollNo, specialization sp) : Student(name,rollNo)
+    Core(string name, string ID, specialization sp) : Student(name,ID)
     {
         this->member_speciality=sp;
     }
