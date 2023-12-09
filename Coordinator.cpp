@@ -5,50 +5,64 @@ using namespace std;
 
 class Coordinator : public Student {
 protected:
-    std::string name;
-    int id;
-    std::list<std::string> workforce;
-    std::list<std::string> coreCommittee;
-    std::list<std::string> eventsManaged;
+   /*string name;
+    int id;*/
+    list<string> workforce;
+    /*list<string> coreCommittee;*/
+    list<Core> coreCommitte;
+    /*list<string> eventsManaged;*/
+    list<Event> eventsManaged;
 
 public:
-    Coordinator(const std::string& coordinatorName, int coordinatorId) : name(coordinatorName), id(coordinatorId) {}
+    /*Coordinator(const string& coordinatorName, int coordinatorId) : name(coordinatorName), id(coordinatorId) {}*/
+    Coordinator(const string& coordinatorName, int coordinatorId) : Student(coordinatorName, coordinatorId) {}
  
-    void addMemberToWorkforce(const std::string& member) {
+    void addMemberToWorkforce(const string& member) {
         workforce.push_back(member);
     }
 
-    void head_CoreCommittee(const std::string& member) {
+   /* void head_CoreCommittee(const string& member) {
         coreCommittee.push_back(member);
-    }
+    }*/
 
-    void EventsToBeManaged(const std::string& event) {
+    void head_CoreCommittee(const Core& member) {
+        coreCommittee.push_back(member);
+
+    /*void EventsToBeManaged(const string& event) {
+        eventsManaged.push_back(event);
+    }*/
+
+     void EventsToBeManaged(const Event& event) {
         eventsManaged.push_back(event);
     }
 
+
     void displayCoordinatorInfo() {
-        std::cout << "Coordinator Name: " << name << std::endl;
-        std::cout << "Coordinator ID: " << id << std::endl;
+        cout << "Coordinator Name: " << name << endl;
+        cout << "Coordinator ID: " << id << endl;
     }
 
     void displayWorkforce() {
-        std::cout << "Workforce under the coordinator:" << std::endl;
+        cout << "Workforce under the coordinator:" << endl;
         for (const auto& member : workforce) {
-            std::cout << "- " << member << std::endl;
+            cout << "- " << member << endl;
         }
     }
 
     void displayCoreCommittee() {
-        std::cout << "Core committee to which the coordinator reports:" << std::endl;
+        cout << "Core committee to which the coordinator reports:" << endl;
         for (const auto& member : coreCommittee) {
-            std::cout << "- " << member << std::endl;
+           /* cout << "- " << member << endl;*/
+            cout << "- Member name : " << member.getName() << endl;
+            cout << "- Member ID : " << member.getID() << endl;
+            cout << "- Member Speciality" : << member.getSpeciality() << endl;
         }
     }
 
     void displayEventsManaged() {
-        std::cout << "Events managed by the coordinator:" << std::endl;
+        cout << "Events managed by the coordinator:" << endl;
         for (const auto& event : eventsManaged) {
-            std::cout << "- " << event << std::endl;
+            /*cout << "- " << event << endl;*/
         }
     }
 };
