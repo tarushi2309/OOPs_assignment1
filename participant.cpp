@@ -13,15 +13,31 @@ class Student
         name=in_name;
         ID=in_ID;
     }
+    string getName()                
+    {
+        return name;
+    }
+    string getID()                 
+    {
+        return ID;
+    }
+
 
 };
 class Participant: private Student
 {
-    vector <string> events();
+    vector <Event> events();
     public:
     Participant()
     {
         
     }
-
+   void addEvent(Event new_event)
+    {
+        events.push_back(new_event);
+    }
+    vector<Event> getEvents()                    
+    {
+        return events;
+    }
 };
