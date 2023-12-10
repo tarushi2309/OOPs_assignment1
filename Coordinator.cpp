@@ -16,7 +16,20 @@ protected:
 
 public:
     /*Coordinator(const string& coordinatorName, int coordinatorId) : name(coordinatorName), id(coordinatorId) {}*/
-    Coordinator(const string& coordinatorName, int coordinatorId) : Student(coordinatorName, coordinatorId) {}
+    Coordinator(const string& coordinatorName, int coordinatorId) : Student(coordinatorName, coordinatorId) {
+       this->coordinatorName = coordinatorName;
+       this->coordinatorId = coordinatorId;
+    }
+
+    string get_coordinatorName()
+    {
+      return this->coordinatorName;
+    }
+
+    string get_coordinatorId()
+    {
+      return this->coordinatorId;
+    }
  
     void addMemberToWorkforce(const string& member) {
         workforce.push_back(member);
