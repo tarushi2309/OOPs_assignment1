@@ -75,11 +75,17 @@ class Core : public Student{
     }
 
     int assignCoordinatorID(Coordinator coordinator){
-
+        for(int i=0;i<coord_force.size();i++)
+            {
+                if((this->coord_force[i]).getID()==coordinator.getID())
+                    return (i+1);
+            }
+        return -1;
+                
     }
 
     Coordinator getCoordinatorbyID(int id){
-        
+        return this->coord_force[id-1];
     }
 
     string getSpeciality()
