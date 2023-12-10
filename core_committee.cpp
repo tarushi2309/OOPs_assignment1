@@ -74,6 +74,14 @@ class Core : public Student{
         this->coord_force.push_back(coordinator);
     }
 
+    int assignCoordinatorID(Coordinator coordinator){
+
+    }
+
+    Coordinator getCoordinatorbyID(int id){
+        
+    }
+
     string getSpeciality()
     {
         if(this->member_speciality==logistics)
