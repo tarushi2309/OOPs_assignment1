@@ -4,8 +4,8 @@ class event{
     public:
     string name,time,venue;
     string description;
-    list<student> registered;
-    list<workforce> workforce;
+    list<Student> registered;
+    list<Workforce> workforce;
     Coordinator cd;
     event(string event_name,string time,string ven,string des)
     {
@@ -38,7 +38,13 @@ class event{
     }
      void disp_workforce(){
         cout<<"workforce for following event :\n";
-        for(auto i:workforce)
-            cout<<i->name<<" "<<i->ID<<endl;
+        for(int i=0:i<workforce.size();i++)
+            {
+            cout << "Workforce number : " << (i+1) << endl;
+            cout << "Workforce size : " << workforce[i].getWorkforceSize() << endl;
+            cout << "Workforce role : " << workforce[i].getWorkforceRole() << endl;
+            cout << "**********************************************" << endl;
+            }
+            
     }
 };
