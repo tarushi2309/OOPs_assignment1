@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 using namespace std;
 
 class Coordinator : public Student {
@@ -63,6 +64,43 @@ public:
         cout << "Events managed by the coordinator:" << endl;
         for (const auto& event : eventsManaged) {
             /*cout << "- " << event << endl;*/
+        }
+    }
+};
+
+struct Worker {
+    string name;
+    string role;
+};
+
+class Workforce : public Student {
+protected:
+    vector<string> roles;
+    vector<Worker> workers;
+
+public:
+    // Constructor to initialize roles
+    Workforce(const vector<string>& festRoles) : roles(festRoles) {}
+
+    // Function to add a worker
+    void addWorker(const string& name) {
+        workers.push_back({name, ""});
+    }
+
+    // Function to assign roles to workers
+    void assignRoles() {
+        size_t roleIndex = 0;
+        for (size_t i = 0; i < workers.size(); ++i) {
+            workers[i].role = roles[roleIndex];
+            roleIndex = (roleIndex + 1) % roles.size(); 
+        }
+    }
+
+    // Function to display worker information
+    void displayWorkers() {
+        cout << "Workers and their roles:" << endl;
+        for (const auto& worker : workers) {
+            cout << "Name: " << worker.name << ", Role: " << worker.role << endl;
         }
     }
 };
