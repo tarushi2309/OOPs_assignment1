@@ -10,7 +10,7 @@ class event{
     event(string event_name,string time,string ven,string des)
     {
         name=event_name;
-        time=time;
+        this->time=time;
         venue=ven;
         description=des;
     }
@@ -31,10 +31,10 @@ class event{
     void disp_reg(){
         cout<<"list of registered students :\n";
         for(auto i:registered)
-            cout<<i->name<<" "<<i->ID<<endl;
+            cout<<i->getName()<<" "<<i->getID()<<endl;
     }
     void disp_coordinator(){
-        cout<<"coordinator for the event: "<<cd->name<<" "<<cd->ID<<endl;
+        cout<<"coordinator for the event: "<<cd->getName()<<" "<<cd->getID()<<endl;
     }
      void disp_workforce(){
         cout<<"workforce for following event :\n";
