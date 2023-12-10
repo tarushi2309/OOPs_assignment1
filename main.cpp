@@ -20,6 +20,12 @@ enum specialization
 
 int main()
 {
+    vector<Participant> list_participants;
+    //event list needs to be hardcoded and displayed with unique ID's as the menu driven feature works based on that
+    vector<Event> event_list;
+    vector<Core> core_committee;
+
+
     cout << "Welcome to Tech Fest 2024 !!!" << endl;
 
     cout << "These are all the events to take place" << endl;
@@ -32,10 +38,7 @@ int main()
     cout << "Enter your choice" << endl;
     int ch;
 
-    vector<Participant> list_participants;
-    //event list needs to be hardcoded and displayed with unique ID's as the menu driven feature works based on that
-    vector<Event> event_list;
-    vector<Core> core_committee;
+   
 
     switch (ch)
     {
@@ -202,12 +205,8 @@ int main()
                 cout << "Enter Event ID" << endl;
                 cin >> eventID;
 
-                for (const auto& event : event_list){
-                    if (event.getEventID == eventID){
-                        current.EventsToBeManaged(event);
-                    }
-                }
-
+                current.EventsToBeManaged(event_list[eventID - 1]);
+                
                 break;
             }
 
