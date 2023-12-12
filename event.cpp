@@ -22,11 +22,11 @@ class event{
         registered.pushback(new_entry);
     }
     void getEventDetails(){
-        cout<<"event details:"<<endl;
-        cout<<"name: "<<name<<endl;
-        cout<<"time: "<<time<<endl;
-        cout<<"venue: "<<venue<<endl;
-        cout<<"description: "<<description<<endl;
+        cout<<"Event details:"<<endl;
+        cout<<"name: "<<this->name<<endl;
+        cout<<"time: "<<this->time<<endl;
+        cout<<"venue: "<<this->venue<<endl;
+        cout<<"description: "<<this->description<<endl;
         cout << "*********************************" <<endl;
     }
     void disp_reg(){
