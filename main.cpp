@@ -4,12 +4,8 @@ void viewEvents(vector<Event> ev)
     int i;
     for (i = 0; i < ev.size(); i++)
     {
-        cout << "Event ID : " << (i + 1) << endl;
-        cout << "Event name : " << ev[i].getName() << endl;
-        cout << "Event activity : " << ev[i].getActivity() << endl;
-        cout << "Event Date and Time : " << ev[i].getDateTime() << endl;
-        cout << "Event venue : " << ev[i].getVenue() << endl;
-        cout << "*********************************************************" << endl;
+        ev[i].getEventDetails();
+        
     }
 }
 
@@ -31,7 +27,7 @@ int main()
     cout << "These are all the events to take place" << endl;
     viewEvents();
 
-    cout << "Kindly enter you choice as per your role" << endl;
+    cout << "Kindly enter your choice as per your role" << endl;
     cout << "1. For Participants" << endl;
     cout << "2. For Core Committee" << endl;
     cout << "3. For Coordinators" << endl;
