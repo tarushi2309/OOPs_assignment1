@@ -94,7 +94,7 @@ int main()
             }
             case 3:
                 {
-                    p.getEventList();
+                    p.getEvents();
                 }
         }
     }
