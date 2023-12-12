@@ -34,6 +34,7 @@ public:
 
     void head_CoreCommittee(const Core& member) {
         coreCommittee.push_back(member);
+    }
 
      void EventsToBeManaged(const Event& event) {
         eventsManaged.push_back(event);
@@ -45,12 +46,6 @@ public:
         cout << "Coordinator ID: " << id << endl;
     }
 
-    /*void displayWorkforce() {
-        cout << "Workforce under the coordinator:" << endl;
-        for (const auto& member : workforce) {
-            cout << "- " << member << endl;
-        }
-    }*/
 
        void displayWorkforce()
    {
@@ -120,34 +115,4 @@ int getWorkforceSize()
    
 };
 
-/*class Workforce : public Student {
-protected:
-    vector<string> roles;
-    vector<Worker> workers;
 
-public:
-    // Constructor to initialize roles
-    Workforce(const vector<string>& festRoles) : roles(festRoles) {}
-
-    // Function to add a worker
-    void addWorker(const string& name) {
-        workers.push_back({name, ""});
-    }
-
-    // Function to assign roles to workers
-    void assignRoles() {
-        size_t roleIndex = 0;
-        for (size_t i = 0; i < workers.size(); ++i) {
-            workers[i].role = roles[roleIndex];
-            roleIndex = (roleIndex + 1) % roles.size(); 
-        }
-    }
-
-    // Function to display worker information
-    void displayWorkers() {
-        cout << "Workers and their roles:" << endl;
-        for (const auto& worker : workers) {
-            cout << "Name: " << worker.name << ", Role: " << worker.role << endl;
-        }
-    }
-};*/
