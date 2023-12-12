@@ -92,6 +92,10 @@ int main()
                 cout << "Events added successfully!!!" << endl;
                 break;
             }
+            case 3:
+                {
+                    p.getEventList();
+                }
         }
     }
     case 2:
