@@ -95,8 +95,10 @@ int main()
             case 3:
                 {
                     p.getEvents();
+                    break;
                 }
         }
+        break;
     }
     case 2:
     {
@@ -173,6 +175,7 @@ int main()
             }
 
         }
+        break;
     }
     case 3:
     {
@@ -237,8 +240,10 @@ int main()
                 current.displayWorkforce();
                 break;
             }
+            
 
         }
+        break;
     }
 
     return 0;
