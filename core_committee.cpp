@@ -45,9 +45,11 @@ class Participant : public Student
         this->events.push_back(new_event);
     }
 
-    vector<Event> getEvents()                    // getter function to get list of events a student is participating in
+    void getEvents()                    // getter function to get list of events a student is participating in
     {
-        return this->events;
+        for(i=0;i<events.size();i++)
+            events[i].getEventDetails();
+        
     }
 
 };
