@@ -7,7 +7,7 @@ using namespace std;
 class Coordinator : public Student {
 protected:
    
-    list<Workforce> workforce;
+    list<Workforce> crew;
     list<Core> coreCommitte;
     list<Event> eventsManaged;
 
@@ -25,11 +25,11 @@ public:
 
     string get_coordinatorId()
     {
-      return this->cId;
+      return this->Id;
     }
  
-    void addMemberToWorkforce(const string& member) {
-        workforce.push_back(member);
+    void addMemberToCrew(const string& member) {
+        crew.push_back(member);
     }
 
     void head_CoreCommittee(const Core& member) {
@@ -47,14 +47,14 @@ public:
     }
 
 
-       void displayWorkforce()
+       void displayCrew()
    {
-      cout << "Workforces under the coordinator:" << endl;
-      for(int i=0;i<workforce.size();i++)
+      cout << "Crew under the coordinator:" << endl;
+      for(int i=0;i<crew.size();i++)
          {
-            cout << "Workforce number : " << (i+1) << endl;
-            cout << "Workforce size : " << workforce[i].getWorkforceSize() << endl;
-            cout << "Workforce role : " << workforce[i].getWorkforceRole() << endl;
+            cout << "Crew number : " << (i+1) << endl;
+            cout << "Crew size : " << crew[i].getWorkforceSize() << endl;
+            cout << Crew role : " << crew[i].getWorkforceRole() << endl;
             cout << "**********************************************" << endl;
          }
    
@@ -83,7 +83,7 @@ public:
 class Workforce
 {
    protected:
-   vector<Student> workforce;
+   vector<Student> crew;
    string role;
 
    public:
@@ -95,12 +95,12 @@ class Workforce
 // Function to add a worker
 void addStudent(Student student)
 {
-   this->workforce.push_back(student);
+   this->crew.push_back(student);
 }
 
 vector<Student> getWorkforce()
 {
-   return this->workforce;
+   return this->crew;
 }
 
 string getWorkforceRole()
@@ -110,7 +110,7 @@ string getWorkforceRole()
 
 int getWorkforceSize()
 {
-   return workforce.size();
+   return crew.size();
 }
    
 };
