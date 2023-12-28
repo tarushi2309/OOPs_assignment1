@@ -13,19 +13,19 @@ protected:
 
 public:
     
-    Coordinator(const string& coordinatorName, int coordinatorId) : Student(coordinatorName, coordinatorId) {
-       this->coordinatorName = coordinatorName;
-       this->coordinatorId = coordinatorId;
+    Coordinator(const string& Name, int Id) : Student(Name, Id) {
+       this->Name = Name;
+       this->Id = Id;
     }
 
     string get_coordinatorName()
     {
-      return this->coordinatorName;
+      return this->Name;
     }
 
     string get_coordinatorId()
     {
-      return this->coordinatorId;
+      return this->cId;
     }
  
     void addMemberToWorkforce(const string& member) {
