@@ -1,43 +1,24 @@
-#include<string>
-#include<vector>
-#include<stdio.h>
-#include <iostream>
+#include<bits/stdc++.h>
+#include "student.h"
 using namespace std;
-class Student
+class Participant : public Student
 {
+    protected:
+    vector<Event> events;
     public:
-    string name;
-    string ID;
-    Student(string in_name,string in_ID)
+    Participant(string name, string ID):            
+        Student(name,ID)
     {
-        name=in_name;
-        ID=in_ID;
-    }
-    string getName()                
-    {
-        return name;
-    }
-    string getID()                 
-    {
-        return ID;
     }
 
+    void addEvent(Event new_event)                    
+    {
+        this->events.push_back(new_event);
+    }
 
-};
-class Participant: private Student
-{
-    vector <Event> events();
-    public:
-    Participant()
+    /*void getEvents()                  
     {
-        
-    }
-   void addEvent(Event new_event)
-    {
-        events.push_back(new_event);
-    }
-    vector<Event> getEvents()                    
-    {
-        return events;
-    }
+        for(i=0;i<events.size();i++)
+            events[i].getEventDetails();
+    }*/
 };
