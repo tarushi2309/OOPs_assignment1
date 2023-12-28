@@ -4,21 +4,19 @@ class event{
     public:
     string name,time,venue;
     string description;
-    list<Student> registered;
-    list<Workforce> workforce;
+    list<student> registered;
     Coordinator cd;
-    event(string event_name,string time,string ven,string des)
+    event(string name,string time,string venue,string description)
     {
-        name=event_name;
+        this->name=name;
         this->time=time;
-        venue=ven;
-        description=des;
+        this->venue=venue;
+        this->description=description;
     }
-    void coordinator_name(Coordinator c){
+    void coordinator_assigned(Coordinator c){
         cd=c;
     }
-    void register(string name,string id){
-        student new_entry(name,id);
+    void register(student new_entry){
         registered.pushback(new_entry);
     }
     void getEventDetails(){
@@ -37,15 +35,6 @@ class event{
     void disp_coordinator(){
         cout<<"coordinator for the event: "<<cd->getName()<<" "<<cd->getID()<<endl;
     }
-     void disp_workforce(){
-        cout<<"workforce for following event :\n";
-        for(int i=0:i<workforce.size();i++)
-            {
-            cout << "Workforce number : " << (i+1) << endl;
-            cout << "Workforce size : " << workforce[i].getWorkforceSize() << endl;
-            cout << "Workforce role : " << workforce[i].getWorkforceRole() << endl;
-            cout << "**********************************************" << endl;
-            }
-            
+         
     }
 };
