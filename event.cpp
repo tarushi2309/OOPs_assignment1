@@ -1,5 +1,9 @@
 #include <iostream>
 using namespace std;
+
+#include "student.h"
+#include "student.cpp"
+
 class event{
     public:
     string name,time,venue;
