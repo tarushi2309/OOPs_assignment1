@@ -49,4 +49,4 @@ This Fest Management Platform is designed using Object-Oriented Programming to e
 
 The files are organized to reflect the hierarchical relationships and responsibilities of the classes:
 
-- **main.cpp:** Contains the main program to execute the fest management platform. Has various usecases based on the roles of Participant, Core Member and Coordinator.
+- **main.cpp:** Contains main program to execute the fest management platform. Has various usecases based on the roles of Participant, Core Member and Coordinator. Operates using menu-driven user interaction.
