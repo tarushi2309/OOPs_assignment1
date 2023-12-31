@@ -1,0 +1,55 @@
+OOPS Group Assignment-1 comments:
+
+General feedback:
+- Add a README file mentioning:
+	- A brief description of the system and the component classes
+	- The relationships between the objects (IS-A/HAS-A)
+	- How the files are structured
+	- Any assumptions
+- Would be good to add a flowchart showing the relationships between the classes
+- Add comments(1/2 lines) explaining what each function does
+- Leave a blank line between functions
+
+Class-wise feedback:
+1. Student: 
+	- Looks like this class is duplicated across multiple files. We can declare the Student class in a header file and include this class in the other files
+	- name and ID should always be protected
+
+2. Participant: 
+	- Constructor definition looks incorrect. Arguments and invocation of super class constructor are missing
+	- Lets use more intuitive argument names for constructor. For example, instead of the below:
+	Student(string in_name,string in_ID)
+    {
+        name=in_name;
+        ID=in_ID;
+    }
+	we could do:
+	Student(string name,string ID) {
+        this->name=name;
+        this->ID=ID;
+    }
+
+3. Core committee:
+	- Would be good to avoid the if-else in getSpeciality(). Let's discuss if we can handle the specializations better
+	- Functionality of assignCoordinatorID() and getCoordinatorbyID()?
+	
+4. Coordinator:
+	- coordinatorName and coordinatorId are redundant; use superclass's(Student) name and ID
+	- functionality of head_CoreCommittee() is not clear -> lets assume that a coordinator reports to a single core committee member
+	- Coordinator to workforce relation should be one-to-one
+	
+5. WorkForce:
+	- let's use a better name for this property: vector<Student> workforce
+	- role/specialization has not been mentioned for work force, only mentioned for core-committee members
+
+6. Event:
+	- WorkForce shouldn't belong to an Event. We can assume that each coordinator has a workforce which will help him/her in organizing the events. Let's mention this in the assumptions as well
+	- register() should not create a student instance, we should accept an instance of student or a student id instead
+	- We should rewrite the constructor in the same way as suggested for Participant
+	- Rename this function: coordinator_name()
+	- registered should be list<Participant> and list<Student>
+	
+7. main.cpp:
+	- Specialization enum has been redeclared, would be good to minimize the duplication of code as much as possible
+	- lets add an infinite while loop to allow the user to carry out multiple transactions/operations
+	- Move the code in each case block to a function -> makes the code look cleaner
