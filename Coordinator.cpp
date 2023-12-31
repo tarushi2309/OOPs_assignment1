@@ -1,118 +1,70 @@
-#include <iostream>
-#include <string>
-#include <list>
-#include <vector>
-using namespace std;
+#include "coordinator.h"
 
-class Coordinator : public Student {
-protected:
-   
-    list<Workforce> crew;
-    list<Core> coreCommitte;
-    list<Event> eventsManaged;
+Coordinator::Coordinator(string name, string ID, Workforce task_force, Student coreCommitteeMember) : Student(name, ID)
+{
+    this->name = name;
+    this->ID = ID;
+    this->task_force = task_force;
+    this->core_committee_member_ID = coreCommitteeMember.getID();
+    this->core_committee_member_name = coreCommitteeMember.getName();
+}
 
-public:
-    
-    Coordinator(const string& Name, int Id) : Student(Name, Id) {
-       this->Name = Name;
-       this->Id = Id;
-    }
+void Coordinator::addEvent(event Event)
+{
+    eventsManaged.push_back(Event);
+}
 
-    string get_coordinatorName()
+void Coordinator::getCoordinatorDetails()
+{
+    cout << "Coordinator Name: " << this->getName() << endl;
+    cout << "Coordinator ID: " << this->getID() << endl;
+}
+
+void Coordinator::getCoreCommitteeMemberDetails()
+{
+    cout << "Coordinator Name: " << this->core_committee_member_name << endl;
+    cout << "Coordinator ID: " << this->core_committee_member_ID << endl;
+}
+
+string Coordinator::getCoordinatorName()
+{
+    return this->getName();
+}
+string Coordinator::getCoordinatorID()
+{
+    return this->getID();
+}
+
+string Coordinator::getCoreCommitteeMemberName()
+{
+    return this->core_committee_member_name;
+}
+
+string Coordinator::getCoreCommitteeMemberID()
+{
+    return this->core_committee_member_ID;
+}
+
+void Coordinator::getWorkforceDetails()
+{
+    cout << "Workforce under the coordinator:" << endl;
+    vector<Student> crew = this->task_force.getWorkforce();
+    for (auto it : crew)
     {
-      return this->Name;
+        cout << "Student Name : " << it.getName() << "  Student ID : " << it.getID() << endl;
     }
+}
 
-    string get_coordinatorId()
+void Coordinator :: getEventDetails()
+{
+    for(auto it : this->eventsManaged)
     {
-      return this->Id;
+        it.getEventDetails();
+        cout <<"\n";
     }
- 
-    void addMemberToCrew(const string& member) {
-        crew.push_back(member);
-    }
-
-    void head_CoreCommittee(const Core& member) {
-        coreCommittee.push_back(member);
-    }
-
-     void EventsToBeManaged(const Event& event) {
-        eventsManaged.push_back(event);
-    }
-
-
-    void displayCoordinatorInfo() {
-        cout << "Coordinator Name: " << name << endl;
-        cout << "Coordinator ID: " << id << endl;
-    }
-
-
-       void displayCrew()
-   {
-      cout << "Crew under the coordinator:" << endl;
-      for(int i=0;i<crew.size();i++)
-         {
-            cout << "Crew number : " << (i+1) << endl;
-            cout << "Crew size : " << crew[i].getWorkforceSize() << endl;
-            cout << Crew role : " << crew[i].getWorkforceRole() << endl;
-            cout << "**********************************************" << endl;
-         }
-   
-   }
-
-    void displayCoreCommittee() {
-        cout << "Core committee to which the coordinator reports:" << endl;
-        for (const auto& member : coreCommittee) {
-           /* cout << "- " << member << endl;*/
-            cout << "- Member name : " << member.getName() << endl;
-            cout << "- Member ID : " << member.getID() << endl;
-            cout << "- Member Speciality" : << member.getSpeciality() << endl;
-        }
-    }
-
-    void displayEventsManaged() {
-        cout << "Events managed by the coordinator:" << endl;
-        for (const auto& event : eventsManaged) {
-            /*cout << "- " << event << endl;*/
-        }
-    }
-};
-
-
-
-class Workforce
-{
-   protected:
-   vector<Student> crew;
-   string role;
-
-   public:
-   Workforce(string role)
-{
-   this->role = role;
 }
 
-// Function to add a worker
-void addStudent(Student student)
+void Coordinator::addNewWorker(Student worker)
 {
-   this->crew.push_back(student);
+    this->task_force.addStudent(worker);
 }
-
-vector<Student> getWorkforce()
-{
-   return this->crew;
-}
-
-string getWorkforceRole()
-{
-   return this->role;
-}
-
-int getWorkforceSize()
-{
-   return crew.size();
-}
-   
-};
-
-
