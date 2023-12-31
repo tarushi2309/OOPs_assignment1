@@ -2,11 +2,10 @@
 using namespace std;
 
 #include "student.h"
-#include "student.cpp"
-#include "participant.cpp"
-#include "Coordinator.cpp"
-#include "core_committee.cpp"
-#include "event.cpp"
+#include "participant.h"
+#include "coordinator.h"
+#include "core_committee.h"
+#include "event.h"
 
 //Assumption: event list needs to be hardcoded and displayed with unique ID's as the menu driven feature works based on that
 //used global variables to seem like central database (easier to implement for now)
@@ -14,6 +13,10 @@ using namespace std;
 vector<Participant> list_participants;
 vector<event> event_list;
 vector<Core> core_committee;
+
+void viewEvents(vector<event> event_list);
+Core findCommitteeMember(string coreID);
+Coordinator findCoordinatorMember(string coordID,vector<Coordinator> coord_force);
 
 int main()
 {
@@ -93,15 +96,18 @@ int main()
 
         if(ch == 3)
         {
-            int coreID, coordID;
+            string coreID, coordID;
 
             cout << "Enter ID of core member you work under: " << endl;
             cin>>coreID;
 
-            cout << "Enter your assigned ID: " << endl;
+            Core reportingMember=findCommitteeMember(coreID);
+
+            cout << "Enter your ID: " << endl;
             cin>>coordID;
 
-            Coordinator current = core_committee[coreID - 1].getCoordinatorByID(coordID);
+            vector<Coordinator> coord_force = reportingMember.getCoordinatorList();
+            Coordinator current=findCoordinatorMember(coordID,coord_force);
 
             displayCoordinatorMenu();
 
@@ -118,7 +124,7 @@ int main()
 
                 case 2:
                 {
-                    current.displayEventsManaged();
+                    current.getEventDetails();
                     break;
                 }
                 case 3:
@@ -128,7 +134,7 @@ int main()
                 }
                 case 4:
                 {
-                    current.displayWorkforce();
+                    current.getWorkforceDetails();
                     break;
                 }
             }
@@ -141,16 +147,6 @@ int main()
 }
 
 
-void viewEvents(vector<event> ev)
-{
-
-    int i;
-    for (i = 0; i < ev.size(); i++)
-    {
-        ev[i].getEventDetails();
-        
-    }
-}
 
 //functions to display use-case menu
 
@@ -191,16 +187,29 @@ void addParticipant() {
     cin >> roll_no;
     Participant p_new(name, roll_no);
     list_participants.push_back(p_new);
-    cout << "ID No : " << list_participants.size() << endl;
+    //cout << "ID No : " << list_participants.size() << endl;
+    cout << "Successfully added as participant for tech fest 2024\n";
+}
+
+Participant find_participant(vector<Participant> list_participants,string ID)
+{
+
+    for(auto it: list_participants)
+    {
+        if(it.getID()==ID)
+        return it;
+    }
+
+    cout << "You have not registered as participant !! Kindly register as participant first!!\n";
 }
 
 void registerEvent() {
 
-    int ID_no;
-    cout << "Enter ID_no provided to you : " << endl;
-    cin >> ID_no;
+    string ID;
+    cout << "Enter your student ID provided to you : " << endl;
+    cin >> ID;
 
-    Participant p = list_participants[ID_no - 1];
+    Participant p = find_participant(list_participants,ID);
 
     viewEvents(event_list);
 
@@ -219,6 +228,8 @@ void registerEvent() {
     cout<<"Event added"<<endl;
 
 }
+
+
 
 void viewMyEvents(){
     int ID_no;
@@ -259,33 +270,36 @@ void addCoordinator() {
     cin >> ID_no;
 
     Core core_member = core_committee[ID_no - 1];
+    Student coreMember = Student(core_member.getName(),core_member.getID());
+
 
     cout << "Enter name of coordinator: ";
     cin >> name;
     cout << "Enter roll no. of coordinator: ";
     cin >> roll_no;
+    Student coordinator=Student(name,roll_no);
 
-    Coordinator new_coord = Coordinator(name, roll_no);
+    Workforce crew(coordinator);
+
+    Coordinator new_coord = Coordinator(name, roll_no,crew,coreMember);
     core_member.addCoordinator(new_coord);
 
-    cout << "You're coordinator ID is " ;
-    cout << core_member.assignCoordinatorID(new_coord) << endl;
 
 }
 
 void viewMyCoordinators() {
 
-    int ID_no;
+    string ID_no;
     cout << "Enter ID of respective core member : " << endl;
     cin >> ID_no;
 
-    Core core_member = core_committee[ID_no - 1];
+    Core core_member = findCommitteeMember(ID_no);
 
     vector<Coordinator> ListOfCoords = core_member.getCoordinatorList();
 
     for(int i = 0; i < ListOfCoords.size(); i++)
     {
-        ListOfCoords[i].displayCoordinatorInfo();
+        ListOfCoords[i].getCoordinatorDetails();
     }
 }
 
@@ -297,7 +311,7 @@ void manageNewEvent(Coordinator current) {
     cout << "Enter Event ID" << endl;
     cin >> eventID;
 
-    current.EventsToBeManaged(event_list[eventID - 1]);
+    current.addEvent(event_list[eventID - 1]);
 }
 
 void addNewWorkforce(Coordinator current){
@@ -309,10 +323,34 @@ void addNewWorkforce(Coordinator current){
     cout << "Enter roll no. of new workforce: ";
     cin >> roll_no;   
 
-    Workforce new_worf = Workforce(name, roll_no);
+    Student new_worker = Student(name, roll_no);
 
-    current.addMemberToWorkforce(new_workf);
+    current.addNewWorker(new_worker);
 
+}
+
+void viewEvents(vector<event> event_list)
+{
+    for(auto it: event_list)
+    it.getEventDetails();
+}
+
+Core findCommitteeMember(string coreID)
+{
+    for(auto it: core_committee)
+    {
+        if(it.getID()==coreID)
+        return it;
+    }
+}
+
+Coordinator findCoordinatorMember(string coordID,vector<Coordinator> coord_force)
+{
+    for(auto it: coord_force)
+    {
+        if(it.getID()==coordID)
+        return it;
+    }
 }
 
 
