@@ -13,6 +13,7 @@ using namespace std;
 vector<Participant> list_participants;
 vector<event> event_list;
 vector<Core> core_committee;
+vector<Coordinator> coordinators;
 
 void viewEvents(vector<event> event_list);
 Core findCommitteeMember(string coreID);
@@ -96,18 +97,12 @@ int main()
 
         if(ch == 3)
         {
-            string coreID, coordID;
-
-            cout << "Enter ID of core member you work under: " << endl;
-            cin>>coreID;
-
-            Core reportingMember=findCommitteeMember(coreID);
+            int coordID;
 
             cout << "Enter your ID: " << endl;
             cin>>coordID;
 
-            vector<Coordinator> coord_force = reportingMember.getCoordinatorList();
-            Coordinator current=findCoordinatorMember(coordID,coord_force);
+            Coordinator current=coordinators[coordID - 1];
 
             displayCoordinatorMenu();
 
@@ -284,6 +279,9 @@ void addCoordinator() {
     Coordinator new_coord = Coordinator(name, roll_no,crew,coreMember);
     core_member.addCoordinator(new_coord);
 
+    coordinators.push_back(new_coord);
+
+    cout << "Coordinator ID is : " << coordinators.size() << endl;
 
 }
 
