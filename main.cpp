@@ -37,7 +37,7 @@ int main()
     while(ch != 4)
     {
         cout << "Enter your choice: " << endl;
-
+        cin>>ch;
         if(ch == 1)
         {
             DisplayParticipantMenu();
